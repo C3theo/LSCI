@@ -7,44 +7,44 @@ Created on Mon Oct 31 15:16:14 2016
 Based on QCamApi.h
 """
 
-from ctypes import *
+import ctypes
 from enum import Enum
 
-class Settings(Structure):
-    _fields_ = [("f1", c_uint32), 
-                ("f2", c_uint16),
-                ("f3", c_uint16), 
-                ("f4", c_uint*8)]
+class QCam_Settings_id(ctypes.Structure):
+    _fields_ = [("f1", ctypes.c_uint32), 
+                ("f2", ctypes.c_uint16),
+                ("f3", ctypes.c_uint16), 
+                ("f4", ctypes.c_uint*8)]
 
-class QCam_Settings(Structure):
-    _fields_ = [("size", c_ulong), 
-                ("_private_data",c_ulong*64)]
+class QCam_Settings(ctypes.Structure):
+    _fields_ = [("size", ctypes.c_ulong), 
+                ("_private_data",ctypes.c_ulong*64)]
 
-class QCam_SettingsEx(Structure):
-    _fields_ = [("size", c_ulong),
-                ("_pSettings_id",POINTER(QCam_Settings_id)),
-                ("_private_data",POINTER(c_ulong))]
+class QCam_SettingsEx(ctypes.Structure):
+    _fields_ = [("size", ctypes.c_ulong),
+                ("_pSettings_id",ctypes.POINTER(QCam_Settings_id)),
+                ("_private_data",ctypes.POINTER(ctypes.c_ulong))]
 
-class QCam_CamListItem(Structure):
-    _fields_ = [("cameraId", c_ulong),
-                ("cameraType", c_ulong),
-                ("uniqueId", c_ulong),
-                ("isOpen", c_ulong),
-                ("_reserved", c_ulong*10)]
+class QCam_CamListItem(ctypes.Structure):
+    _fields_ = [("cameraId", ctypes.c_ulong),
+                ("cameraType", ctypes.c_ulong),
+                ("uniqueId", ctypes.c_ulong),
+                ("isOpen", ctypes.c_ulong),
+                ("_reserved", ctypes.c_ulong*10)]
     
-class QCam_Frame(Structure):
-    _fields_ = [("pBuffer", POINTER(c_ulong*4)),
-                 ("bufferSize", c_ulong),
-                 ("format", c_ulong),
-                 ("width", c_ulong),
-                 ("height", c_ulong),
-                 ("size", c_ulong),
-                 ("bits", c_ushort),
-                 ("frameNumber", c_ushort),
-                 ("bayerPattern", c_ulong),
-                 ("errorCode", c_ulong),
-                 ("timeStamp", c_ulong),
-                 ("_reserved", c_ulong*8)]
+class QCam_Frame(ctypes.Structure):
+    _fields_ = [("pBuffer", ctypes.POINTER(ctypes.c_ulong*4)),
+                 ("bufferSize", ctypes.c_ulong),
+                 ("format", ctypes.c_ulong),
+                 ("width", ctypes.c_ulong),
+                 ("height", ctypes.c_ulong),
+                 ("size", ctypes.c_ulong),
+                 ("bits", ctypes.c_ushort),
+                 ("frameNumber", ctypes.c_ushort),
+                 ("bayerPattern", ctypes.c_ulong),
+                 ("errorCode", ctypes.c_ulong),
+                 ("timeStamp", ctypes.c_ulong),
+                 ("_reserved", ctypes.c_ulong*8)]
                  
 #QCam_Err =     {
 #        'qerrSuccess'             : 0,        
