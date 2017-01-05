@@ -22,7 +22,7 @@ class QCam_Settings(Structure):
 
 class QCam_SettingsEx(Structure):
     _fields_ = [("size", c_ulong),
-                ("_pSettings_id",POINTER(QCam_Settings_id)),
+                ("_pSettings_id",POINTER(Settings)),
                 ("_private_data",POINTER(c_ulong))]
 
 class QCam_CamListItem(Structure):
